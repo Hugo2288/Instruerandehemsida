@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# Övning 3 - Grundläggande Aritmetik</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>Grundläggande matte i C#</h1>
+    <a href="index.html" class="back-to-overview">Tillbaka till översikt</a>
+</div>
+
+    <div class="info">
+        <p>I den här övningen ska du lära dig att använda operatorer för att utföra matematiska beräkningar i C#.</p>
+        <p>Följ dessa steg:</p>
+        <ul>
+            <li>Skriv <code>using System;</code> först (importerar grundläggande funktionalitet)</li>
+            <li>Skapa en klass med <code>class Program</code> (exempel: <code>class Program { }</code>)</li>
+            <li>Skriv <code>static void Main()</code> (exempel: <code>static void Main() { }</code>)</li>
+            <li>Skapa två <code>int</code> variabler: "tal1" med värdet 10 och "tal2" med värdet 3 (exempel: <code>int tal1 = 10;</code> och <code>int tal2 = 3;</code>)</li>
+            <li>Beräkna och spara summan av tal1 och tal2 i en variabel "summa" (exempel: <code>int summa = tal1 + tal2;</code>)</li>
+            <li>Beräkna och spara produkten av tal1 och tal2 i en variabel "produkt" (exempel: <code>int produkt = tal1 * tal2;</code>)</li>
+            <li>Beräkna och spara kvoten av tal1 delat med tal2 i en variabel "kvot" (använd <code>double</code> för denna) (exempel: <code>double kvot = (double)tal1 / tal2;</code>)</li>
+            <li>Använd <code>Console.WriteLine()</code> för att skriva ut alla resultat med förklarande text (exempel: <code>Console.WriteLine("Summan är: " + summa);</code>)</li>
+        </ul>
+
+    </div>
+
+    <div class="kodbox">
+        <h3>Skriv din kod här:</h3>
+        <textarea id="codeInput" placeholder="Skriv din C# kod här..."></textarea>
+        <button onclick="checkCode()">Testa koden</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkCode() {
+            const requiredElements = [
+                'using System;',
+                'class Program',
+                'static void Main()',
+                'int tal1 = 10;',
+                'int tal2 = 3;',
+                'int summa = tal1 + tal2;',
+                'int produkt = tal1 * tal2;',
+                'double kvot = (double)tal1 / tal2;',
+                'Console.WriteLine'
+            ];
+
+            const userCode = document.getElementById('codeInput').value;
+            const resultDiv = document.getElementById('result');
+            
+            const allElementsPresent = requiredElements.every(element => 
+                userCode.includes(element));
+            
+            if (allElementsPresent) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = 'Bra jobbat! Din kod innehåller alla nödvändiga delar! 🎉';
+                resultDiv.innerHTML += '<div><a href="exercise4.html" class="next-exercise">Nästa uppgift &rarr;</a></div>';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = 'Försök igen! Kontrollera att du har med alla nödvändiga delar och att syntaxen är korrekt.';
+            }
+        }
+    </script>
+</body>
+</html>

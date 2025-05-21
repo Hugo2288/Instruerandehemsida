@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# Övning 5 - Loopar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>Loopar (for och while) i C#</h1>
+    <a href="index.html" class="back-to-overview">Tillbaka till översikt</a>
+</div>
+
+    <div class="info">
+        <p>I den här övningen ska du lära dig att använda loopar för att upprepa kod i C#.</p>
+        <p>Följ dessa steg:</p>
+        <ul>
+            <li>Skriv <code>using System;</code> först (importerar grundläggande funktionalitet)</li>
+            <li>Skapa en klass med <code>class Program</code> (exempel: <code>class Program { }</code>)</li>
+            <li>Skriv <code>static void Main()</code> (exempel: <code>static void Main() { }</code>)</li>
+            <li>Skapa en <code>for</code>-loop som skriver ut talen 1 till 5 (exempel: <code>for (int i = 1; i &lt;= 5; i++) { Console.WriteLine(i); }</code>)</li>
+            <li>Efter for-loopen, skriv ut en tom rad med <code>Console.WriteLine();</code></li>
+            <li>Skapa en <code>int</code> variabel "i" med värdet 10 (exempel: <code>int i = 10;</code>)</li>
+            <li>Skapa en <code>while</code>-loop som fortsätter så länge i är större än 0 (exempel: <code>while (i > 0) { }</code>)</li>
+            <li>I while-loopen, skriv ut värdet på i och minska sedan i med 2 för varje upprepning (exempel: <code>Console.WriteLine(i); i -= 2;</code>)</li>
+        </ul>
+
+    </div>
+
+    <div class="kodbox">
+        <h3>Skriv din kod här:</h3>
+        <textarea id="codeInput" placeholder="Skriv din C# kod här..."></textarea>
+        <button onclick="checkCode()">Testa koden</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkCode() {
+            const requiredElements = [
+                'using System;',
+                'class Program',
+                'static void Main()',
+                'for',
+                'int i = 1; i <= 5; i++',
+                'Console.WriteLine(i);',
+                'while',
+                'i > 0',
+                'i -= 2',
+                'Console.WriteLine(i);'
+            ];
+
+            const userCode = document.getElementById('codeInput').value;
+            const resultDiv = document.getElementById('result');
+            
+            let score = 0;
+            const maxScore = requiredElements.length;
+            
+            if (userCode.includes('for') && 
+                /for\s*\(\s*int\s+[a-z]\s*=\s*1\s*;\s*[a-z]\s*<=\s*5\s*;\s*[a-z]\+\+\s*\)/.test(userCode)) {
+                score += 2;
+            } else if (userCode.includes('for')) {
+                score += 1;
+            }
+            
+            if (userCode.includes('while') && 
+                /while\s*\(\s*[a-z]\s*>\s*0\s*\)/.test(userCode)) {
+                score += 2;
+            } else if (userCode.includes('while')) {
+                score += 1;
+            }
+            
+            for (const element of ['using System;', 'class Program', 'static void Main()', 'Console.WriteLine']) {
+                if (userCode.includes(element)) {
+                    score += 1;
+                }
+            }
+            
+            if (/[a-z]\s*-=\s*2/.test(userCode) || /[a-z]\s*=\s*[a-z]\s*-\s*2/.test(userCode)) {
+                score += 1;
+            }
+            
+            const percentage = (score / maxScore) * 100;
+            
+            if (percentage >= 80) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `Bra jobbat! Din kod innehåller de flesta nödvändiga delar! (${score}/${maxScore} poäng) 🎉`;
+                resultDiv.innerHTML += '<div><a href="exercise6.html" class="next-exercise">Nästa uppgift &rarr;</a></div>';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `Försök igen! Din kod behöver förbättras. (${score}/${maxScore} poäng)`;
+            }
+        }
+    </script>
+</body>
+</html>

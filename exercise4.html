@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# Övning 4 - Villkorssatser</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>Villkorssatser (if-else) i C#</h1>
+    <a href="index.html" class="back-to-overview">Tillbaka till översikt</a>
+</div>
+
+    <div class="info">
+        <p>I den här övningen ska du lära dig att använda villkorssatser för att styra programflödet i C#.</p>
+        <p>Följ dessa steg:</p>
+        <ul>
+            <li>Skriv <code>using System;</code> först (importerar grundläggande funktionalitet)</li>
+            <li>Skapa en klass med <code>class Program</code> (exempel: <code>class Program { }</code>)</li>
+            <li>Skriv <code>static void Main()</code> (exempel: <code>static void Main() { }</code>)</li>
+            <li>Skapa en <code>int</code> variabel "ålder" med värdet 17 (exempel: <code>int ålder = 17;</code>)</li>
+            <li>Skapa en <code>if-else</code> sats som kontrollerar om ålder är större än eller lika med 18 (exempel: <code>if (ålder >= 18) { }</code>)</li>
+            <li>Om ålder är >= 18, skriv ut "Du är myndig!" (exempel: <code>Console.WriteLine("Du är myndig!");</code>)</li>
+            <li>Annars, skriv ut "Du är inte myndig än." (exempel: <code>else { Console.WriteLine("Du är inte myndig än."); }</code>)</li>
+            <li>Lägg till en <code>else if</code> som kontrollerar om ålder är exakt 17 och skriver ut "Du blir myndig nästa år!" (exempel: <code>else if (ålder == 17) { Console.WriteLine("Du blir myndig nästa år!"); }</code>)</li>
+        </ul>
+
+    </div>
+
+    <div class="kodbox">
+        <h3>Skriv din kod här:</h3>
+        <textarea id="codeInput" placeholder="Skriv din C# kod här..."></textarea>
+        <button onclick="checkCode()">Testa koden</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkCode() {
+            const requiredElements = [
+                'using System;',
+                'class Program',
+                'static void Main()',
+                'int ålder = 17;',
+                'if',
+                'else if',
+                'else',
+                '>= 18',
+                '== 17',
+                'Console.WriteLine'
+            ];
+
+            const userCode = document.getElementById('codeInput').value;
+            const resultDiv = document.getElementById('result');
+            
+            let missingElements = [];
+            for (const element of requiredElements) {
+                if (!userCode.includes(element)) {
+                    missingElements.push(element);
+                }
+            }
+            
+            if (missingElements.length === 0) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = 'Bra jobbat! Din kod innehåller alla nödvändiga delar! 🎉';
+                resultDiv.innerHTML += '<div><a href="exercise5.html" class="next-exercise">Nästa uppgift &rarr;</a></div>';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = 'Försök igen! Du saknar följande delar: ' + missingElements.join(', ');
+            }
+        }
+    </script>
+</body>
+</html>

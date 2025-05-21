@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# Övning 2 - Variabler och Datatyper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>Variabler och Datatyper i C#</h1>
+    <a href="index.html" class="back-to-overview">Tillbaka till översikt</a>
+</div>
+
+    <div class="info">
+        <p>I den här övningen ska du lära dig att använda variabler och datatyper i C#.</p>
+        <p>Följ dessa steg:</p>
+        <ul>
+            <li>Skriv <code>using System;</code> först (importerar grundläggande funktionalitet)</li>
+            <li>Skapa en klass med <code>class Program</code> (exempel: <code>class Program { }</code>)</li>
+            <li>Skriv <code>static void Main()</code> (exempel: <code>static void Main() { }</code>)</li>
+            <li>Skapa en <code>int</code> variabel med namnet "tal" och värdet 42 (exempel: <code>int tal = 42;</code>)</li>
+            <li>Skapa en <code>string</code> variabel med namnet "hälsning" och värdet "Hej från C#!" (exempel: <code>string hälsning = "Hej från C#!";</code>)</li>
+            <li>Använd <code>Console.WriteLine()</code> för att skriva ut båda variablerna (exempel: <code>Console.WriteLine(tal);</code>)</li>
+            <li>Kom ihåg kråkparenteserna <code>{}</code> för att omsluta kod i klassen och metoden</li>
+        </ul>
+
+    </div>
+
+    <div class="kodbox">
+        <h3>Skriv din kod här:</h3>
+        <textarea id="codeInput" placeholder="Skriv din C# kod här..."></textarea>
+        <button onclick="checkCode()">Testa koden</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkCode() {
+            const expectedLines = [
+                'using System;',
+                'class Program',
+                '{',
+                'static void Main()',
+                '{',
+                'int tal = 42;',
+                'string hälsning = "Hej från C#!";',
+                'Console.WriteLine(tal);',
+                'Console.WriteLine(hälsning);',
+                '}',
+                '}'
+            ];
+
+            const userCode = document.getElementById('codeInput').value;
+            const userLines = userCode.split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0);
+
+            const resultDiv = document.getElementById('result');
+            
+            if (userLines.join('') === expectedLines.join('')) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = 'Bra jobbat! Din kod är korrekt! 🎉';
+                resultDiv.innerHTML += '<div><a href="exercise3.html" class="next-exercise">Nästa uppgift &rarr;</a></div>';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = 'Försök igen! Kontrollera att du har med alla nödvändiga delar och att syntaxen är korrekt.';
+            }
+        }
+    </script>
+</body>
+</html>

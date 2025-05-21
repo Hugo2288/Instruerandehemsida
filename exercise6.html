@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# Övning 6 - Arrayer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>Arrayer i C#</h1>
+    <a href="index.html" class="back-to-overview">Tillbaka till översikt</a>
+</div>
+
+    <div class="info">
+        <p>I den här övningen ska du lära dig att använda arrayer i C#.</p>
+        <p>En array är en samling av värden av samma typ. Du kan tänka på en array som en lista med numrerade platser.</p>
+        
+        <p>Följ dessa steg:</p>
+        <ul>
+            <li>Skriv <code>using System;</code> först</li>
+            <li>Skapa en klass med <code>class Program</code></li>
+            <li>Skriv <code>static void Main()</code></li>
+            <li>Skapa en array med 5 tal (exempel: <code>int[] tal = {10, 20, 30, 40, 50};</code>)</li>
+            <li>Skriv ut det första talet i arrayen (exempel: <code>Console.WriteLine("Första talet: " + tal[0]);</code>)</li>
+            <li>Ändra värdet på det tredje talet till 35 (exempel: <code>tal[2] = 35;</code>)</li>
+            <li>Skriv ut alla tal i arrayen med en loop (exempel: <code>for (int i = 0; i &lt; tal.Length; i++) { Console.WriteLine("Tal " + i + ": " + tal[i]); }</code>)</li>
+        </ul>
+    </div>
+
+    <div class="kodbox">
+        <h3>Skriv din kod här:</h3>
+        <textarea id="codeInput" placeholder="Skriv din C# kod här..."></textarea>
+        <button onclick="checkCode()">Testa koden</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkCode() {
+            const requiredElements = [
+                'using System;',
+                'class Program',
+                'static void Main()',
+                'int[] tal =',
+                'Console.WriteLine',
+                'tal[0]',
+                'tal[2] = 35',
+                'for',
+                'tal.Length',
+                'i < tal.Length'
+            ];
+
+            const userCode = document.getElementById('codeInput').value;
+            const resultDiv = document.getElementById('result');
+            
+            let score = 0;
+            const maxScore = requiredElements.length;
+            let feedback = [];
+            
+            if (userCode.includes('using System;')) score++;
+            else feedback.push("Saknar 'using System;'");
+            
+            if (userCode.includes('class Program')) score++;
+            else feedback.push("Saknar 'class Program'");
+            
+            if (userCode.includes('static void Main()')) score++;
+            else feedback.push("Saknar 'static void Main()'");
+            if (/int\[\]\s+tal\s*=/.test(userCode)) score++;
+            else feedback.push("Saknar array-deklarationen 'int[] tal ='");
+            
+            if (userCode.includes('Console.WriteLine')) score++;
+            else feedback.push("Du skriver inte ut resultatet");
+            
+            if (userCode.includes('tal[0]')) score++;
+            else feedback.push("Du använder inte tal[0] för att komma åt första talet");
+            
+            if (userCode.includes('tal[2] = 35')) score++;
+            else feedback.push("Du ändrar inte värdet på tredje talet till 35");
+            
+            if (userCode.includes('for')) score++;
+            else feedback.push("Du använder inte en for loop");
+            
+            if (userCode.includes('tal.Length')) score++;
+            else feedback.push("Du använder inte tal.Length för att få arrayens längd");
+            
+            if (/i\s*<\s*tal\.Length/.test(userCode)) score++;
+            else feedback.push("Din loop vilkor är inte rätt (i < tal.Length)");
+            
+            const percentage = (score / maxScore) * 100;
+            
+            if (percentage >= 80) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `Bra jobbat du har använt arrayer (${score}/${maxScore} poäng) 🎉`;
+                if (feedback.length > 0) {
+                    resultDiv.innerHTML += "<br>Tips för förbättring: " + feedback.join(". ");
+                }
+                resultDiv.innerHTML += '<div><a href="index.html" class="next-exercise">Tillbaka till startsidan</a></div>';
+            } else {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `Försök igen! Din kod behöver förbättras. (${score}/${maxScore} poäng)<br>`;
+                resultDiv.innerHTML += "Feedback: " + feedback.join(". ");
+            }
+        }
+    </script>
+</body>
+</html>
